@@ -7,27 +7,26 @@
 <body>
     <h1>Edit Task</h1>
     <form method="POST">
-        <form method="POST">
-            <label for="title">Название:</label>
-            <input type="text" id="title" name="title" value="{{ task.title }}" required><br>
+        <label for="title">Название:</label>
+        <input type="text" id="title" name="title" value="{{ task.title }}" required><br>
         
-            <label for="content">Описание:</label>
-            <textarea id="content" name="content">{{ task.content }}</textarea><br>
+        <label for="content">Описание:</label>
+        <textarea id="content" name="content">{{ task.content }}</textarea><br>
         
-            <label for="priority">Приоритет:</label>
-            <input type="number" id="priority" name="priority" value="{{ task.priority }}" min="0" max="5"><br>
+        <label for="priority">Приоритет:</label>
+        <input type="number" id="priority" name="priority" value="{{ task.priority }}" min="0" max="5"><br>
         
-            <label for="category">Категория:</label>
-            <input type="text" id="category" name="category" value="{{ task.category }}"><br>
+        <label for="category">Категория:</label>
+        <input type="text" id="category" name="category" value="{{ task.category }}"><br>
         
-            <label for="progress">Прогресс:</label>
-            <input type="number" id="progress" name="progress" value="{{ task.progress }}" min="0" max="100"><br>
+        <label for="progress">Прогресс:</label>
+        <input type="number" id="progress" name="progress" value="{{ task.progress }}" min="0" max="100"><br>
         
-            <label for="due_date">Срок выполнения:</label>
-            <input type="date" id="due_date" name="due_date" value="{{ task.due_date }}"><br>
+        <label for="due_date">Срок выполнения:</label>
+        <input type="date" id="due_date" name="due_date" value="{{ task.due_date }}"><br>
         
-            <button type="submit">Сохранить изменения</button>
-        </form>
+        <button type="submit">Сохранить изменения</button>
     </form>
+    <a href="/">Назад</a>
 </body>
 </html>
