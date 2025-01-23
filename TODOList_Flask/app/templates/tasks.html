@@ -13,7 +13,7 @@
             <h3>Название: {{ task.title }}</h3>
             <p>Содержание: {{ task.content }}</p>
             <p>Приоритет: {{ task.priority }}</p>
-            <p>Создано: {{ task.created_at.strftime('%Y-%m-%d %H:%M') }} | Выполнить до: {{ task.due_date.strftime('%Y-%m-%d %H:%M') }}</p>
+            <p>Создано: {{ task.created_at.strftime('%Y-%m-%d %H:%M') }} | Изменено: {{ task.updated_at.strftime('%Y-%m-%d %H:%M') }} | Выполнить до: {{ task.due_date.strftime('%Y-%m-%d %H:%M') }}</p>
             <a href="{{ url_for('task.edit_task', task_id=task.id) }}">Редактировать</a>
             
             <form action="{{ url_for('task.delete_task', task_id=task.id) }}" method="POST" style="display:inline;">
