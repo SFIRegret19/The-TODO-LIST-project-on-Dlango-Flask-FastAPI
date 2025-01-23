@@ -1,8 +1,21 @@
-{% extends "base.html" %}
-
-{% block title %}Home{% endblock %}
-
-{% block content %}
-    <h1>Welcome to my website!</h1>
-    <p>This is the homepage.</p>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+</head>
+<body>
+    <h1>TODO List</h1>
+    <a href="/add">Добавить задачу</a>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            <strong>{{ task['title'] }}</strong> ({{ task['user'] }})
+            <p>{{ task['description'] }}</p>
+            <a href="/delete/{{ task['id'] }}">Удалить</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
