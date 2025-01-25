@@ -2,25 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TODO-List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Твои задачи</h1>
-    <a href="{{ url_for('task.create_task') }}">Добавить задачу</a>
-    <ul>
-        {% for task in tasks %}
-        <li>
-            <h3>Название: {{ task.title }}</h3>
-            <p>Содержание: {{ task.content }}</p>
-            <p>Приоритет: {{ task.priority }}</p>
-            <p>Создано: {{ task.created_at.strftime('%Y-%m-%d %H:%M') }} | Изменено: {{ task.updated_at.strftime('%Y-%m-%d %H:%M') }} | Выполнить до: {{ task.due_date.strftime('%Y-%m-%d %H:%M') }}</p>
-            <a href="{{ url_for('task.edit_task', task_id=task.id) }}">Редактировать</a>
-            
-            <form action="{{ url_for('task.delete_task', task_id=task.id) }}" method="POST" style="display:inline;">
-                <button type="submit" onclick="return confirm('Are you sure you want to delete this task?')">Удалить</button>
-            </form>
-        </li>
-        {% endfor %}
-    </ul>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Твои задачи</h1>
+        <div class="mb-3">
+            <a href="{{ url_for('task.create_task') }}" class="btn btn-primary">Добавить задачу</a>
+        </div>
+        <ul class="list-group">
+            {% for task in tasks %}
+            <li class="list-group-item">
+                <h3 class="mb-2">{{ task.title }}</h3>
+                <p>{{ task.content }}</p>
+                <p><strong>Приоритет:</strong> {{ task.priority }}</p>
+                <p>
+                    <strong>Создано:</strong> {{ task.created_at.strftime('%Y-%m-%d %H:%M') }} |
+                    <strong>Изменено:</strong> {{ task.updated_at.strftime('%Y-%m-%d %H:%M') }} |
+                    <strong>Выполнить до:</strong> {{ task.due_date.strftime('%Y-%m-%d') }}
+                </p>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('task.edit_task', task_id=task.id) }}" class="btn btn-warning btn-sm">Редактировать</a>
+                    <form action="{{ url_for('task.delete_task', task_id=task.id) }}" method="POST">
+                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить задачу?')">Удалить</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
