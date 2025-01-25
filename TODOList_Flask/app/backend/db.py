@@ -7,7 +7,6 @@ SessionLocal = sessionmaker(bind=engine)
 class Base(DeclarativeBase):
     pass
 
-
 def init_db():
     from models.user import User
     from models.task import Task
