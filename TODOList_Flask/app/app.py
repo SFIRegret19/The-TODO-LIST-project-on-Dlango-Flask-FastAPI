@@ -4,7 +4,6 @@ from models.task import Task
 from routers.task import task_router
 from routers.auth import auth_router
 
-
 app = Flask(__name__)
 
 # Регистрируем роутеры
