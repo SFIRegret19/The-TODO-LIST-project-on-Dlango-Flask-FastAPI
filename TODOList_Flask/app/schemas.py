@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, EmailStr
 from datetime import datetime
 from enums.task_priority import Priority  # Импортируем Enum для приоритета
 
@@ -50,3 +50,36 @@ class TaskOut(BaseModel):
 
     class Config:
         use_enum_values = True  # Для использования значений enum при сериализации
+
+# Схема для создания пользователя
+class CreateUser(BaseModel):
+    username: str
+    email: EmailStr
+    firstname: str
+    lastname: str
+    age: int = Field(ge=100, gt=0)  # Указываем, что возраст должен быть больше 0, меньше 100
+    password: str
+    slug: str | None = None  # Уникальный идентификатор
+
+
+# Схема для отображения пользователя
+class UserOut(BaseModel):
+    id: int
+    username: str
+    email: EmailStr
+    firstname: str
+    lastname: str
+    age: int
+    full_name: str
+    created_at: datetime
+    updated_at: datetime
+    slug: str
+
+    class Config:
+        orm_mode = True  # Позволяет использовать SQLAlchemy-объекты
+
+
+# Схема для входа пользователя
+class LoginUser(BaseModel):
+    email: EmailStr
+    password: str
