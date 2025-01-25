@@ -20,7 +20,12 @@
             </div>
             <div class="mb-3">
                 <label for="priority" class="form-label">Приоритет</label>
-                <input type="number" id="priority" name="priority" class="form-control" value="{{ task.priority }}" min="0" max="5">
+                <select id="priority" name="priority" class="form-select" required>
+                    <option value="Не важное_Не срочное" {% if priority == 'Не важное_Не срочное' %}selected{% endif %}>Не важное_Не срочное</option>
+                    <option value="Важное_Не срочное" {% if priority == 'Важное_Не срочное' %}selected{% endif %}>Важное_Не срочное</option>
+                    <option value="Не важное_Срочное" {% if priority == 'Не важное_Срочное' %}selected{% endif %}>Не важное_Срочное</option>
+                    <option value="Важное_Срочное" {% if priority == 'Важное_Срочное' %}selected{% endif %}>Важное_Срочное</option>                                       
+                </select>               
             </div>
             <div class="mb-3">
                 <label for="category" class="form-label">Категория</label>
@@ -32,13 +37,21 @@
             </div>
             <div class="mb-3">
                 <label for="due_date" class="form-label">Срок выполнения</label>
-                <input type="date" id="due_date" name="due_date" class="form-control" value="{{ task.due_date }}">
+                <input type="date" id="due_date" name="due_date" class="form-control" value="{{ task.due_date.strftime('%Y-%m-%d') }}">
             </div>
-            <div class="d-flex justify-content-between">
+            <p>
+                <strong>Статус:</strong> 
+                {% if task.is_completed %}
+                <span class="badge bg-success">Завершена</span>
+                {% else %}
+                <span class="badge bg-warning text-dark">Не завершена</span>
+                {% endif %}
+            </p>
+            <div class="d-flex justify-content-between mt-3">
                 <a href="/" class="btn btn-secondary">Назад</a>
                 <button type="submit" class="btn btn-success">Сохранить изменения</button>
             </div>
-        </form>
+        </form>    
     </div>
 </body>
 </html>

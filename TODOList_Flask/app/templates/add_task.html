@@ -16,12 +16,17 @@
             </div>
             <div class="mb-3">
                 <label for="content" class="form-label">Описание</label>
-                <textarea id="content" name="content" class="form-control" placeholder="Введите описание"></textarea>
+                <textarea id="content" name="content" class="form-control"></textarea>
             </div>
             <div class="mb-3">
                 <label for="priority" class="form-label">Приоритет</label>
-                <input type="number" id="priority" name="priority" class="form-control" min="0" max="5">
-            </div>
+                <select id="priority" name="priority" class="form-select" required>
+                    <option value="Не важное_Не срочное">Не важное_Не срочное</option>
+                    <option value="Важное_Не срочное">Важное_Не срочное</option>
+                    <option value="Не важное_Срочное">Не важное_Срочное</option>
+                    <option value="Важное_Срочное">Важное_Срочное</option>
+                </select>
+            </div>          
             <div class="mb-3">
                 <label for="category" class="form-label">Категория</label>
                 <input type="text" id="category" name="category" class="form-control">

@@ -17,14 +17,27 @@
             <li class="list-group-item">
                 <h3 class="mb-2">{{ task.title }}</h3>
                 <p>{{ task.content }}</p>
-                <p><strong>Приоритет:</strong> {{ task.priority }}</p>
+                <p><strong>Приоритет:</strong> {{ task.priority.value }}</p>
                 <p>
                     <strong>Создано:</strong> {{ task.created_at.strftime('%Y-%m-%d %H:%M') }} |
                     <strong>Изменено:</strong> {{ task.updated_at.strftime('%Y-%m-%d %H:%M') }} |
                     <strong>Выполнить до:</strong> {{ task.due_date.strftime('%Y-%m-%d') }}
                 </p>
+                <p>
+                    <strong>Статус:</strong> 
+                    {% if task.is_completed %}
+                    <span class="badge bg-success">Завершена</span>
+                    {% else %}
+                    <span class="badge bg-warning text-dark">Не завершена</span>
+                    {% endif %}
+                </p>
                 <div class="d-flex gap-2">
                     <a href="{{ url_for('task.edit_task', task_id=task.id) }}" class="btn btn-warning btn-sm">Редактировать</a>
+                    {% if not task.is_completed %}
+                    <form action="{{ url_for('task.mark_task_completed', task_id=task.id) }}" method="POST">
+                        <button type="submit" class="btn btn-success btn-sm" onclick="return confirm('Вы уверены, что хотите завершить задачу?')">Завершить</button>
+                    </form>
+                    {% endif %}
                     <form action="{{ url_for('task.delete_task', task_id=task.id) }}" method="POST">
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Вы уверены, что хотите удалить задачу?')">Удалить</button>
                     </form>
