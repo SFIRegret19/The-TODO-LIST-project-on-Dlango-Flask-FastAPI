@@ -2,11 +2,14 @@ from flask import Flask, render_template
 from backend.db_depends import get_db
 from models.task import Task
 from routers.task import task_router
+from routers.auth import auth_router
+
 
 app = Flask(__name__)
 
-# Регистрируем task_router
+# Регистрируем роутеры
 app.register_blueprint(task_router)
+app.register_blueprint(auth_router)
 
 # Просмотр всех задач:
 @app.route('/')
